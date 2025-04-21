@@ -113,7 +113,7 @@ The following image shows the gamepad button mapping used during recording:
 Start the recording process:
 
 ```bash
-python lerobot/scripts/server/gym_manipulator.py --config_path configs/env_config_so100.json
+python lerobot/scripts/server/gym_manipulator.py --config_path lerobot/configs/env_config_so100.json
 ```
 
 During recording:
@@ -192,7 +192,7 @@ Create a training configuration file (See example `train_config_hilserl_so100.js
 First, start the learner server process:
 
 ```bash
-python lerobot/scripts/server/learner_server.py --config_path configs/train_config_hilserl_so100.json
+python lerobot/scripts/server/learner_server.py --config_path lerobot/configs/train_config_hilserl_so100.json
 ```
 
 The learner:
@@ -206,7 +206,7 @@ The learner:
 In a separate terminal, start the actor process with the same configuration:
 
 ```bash
-python lerobot/scripts/server/actor_server.py --config_path configs/train_config_hilserl_so100.json
+python lerobot/scripts/server/actor_server.py --config_path lerobot/configs/train_config_hilserl_so100.json
 ```
 
 The actor:
