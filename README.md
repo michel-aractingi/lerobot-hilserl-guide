@@ -230,12 +230,21 @@ The training proceeds automatically:
 
 - The key to learning efficiently is to have a human interventions to provide corrective feedback and completing the task to aide the policy learning and exploration.
 - To perform human interventions, you can press the upper right trigger button on the gamepad. This will pause the policy actions and allow you to take over. 
-- A succesfull experiment is one where the human has to intervene at the start but then reduces the amount of interventions as the policy improves. You can monitor the intervention rate in the `wandb` dashboard.
+- A successful experiment is one where the human has to intervene at the start but then reduces the amount of interventions as the policy improves. You can monitor the intervention rate in the `wandb` dashboard.
 
 <img src="media/hil_effect.png" width="600" style="display: block; margin: 0 auto;"/>
 
 <p align="center"><i>Example showing how human interventions help guide policy learning over time</i></p>
 
+- The figure shows the plot of the episodic reward over interaction step. The figure shows the effect of human interventions on the policy learning.
+- The orange curve is an experiment without any human interventions. While the pink and blue curves are experiments with human interventions.
+- We can observe that the number of steps where the policy starts acheiving the maximum reward is cut by a quarter when human interventions are present.
+
+#### Guide to Human Interventions
+The strategy to follow is to intervene heavily at the start of training and then reduce the amount of interventions as the training progresses. Some tips and hints:
+- Interevene for almost the length of the entire episode at the first few episodes.
+- When the policy is less chaotic, gradually reduce the intervention time during one episode and let the policy explore for a longer time.
+- Once the policy start guiding the robot towards acheiving the task, even if its not perfect, you can limit your interventions to simple quick actions like a grasping command, or grasp and lift command. 
 
 ## Monitoring and Debugging
 
