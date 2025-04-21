@@ -81,7 +81,7 @@ With workspace bounds defined, you can collect demonstrations for training.
 
 ### Setting Up Record Mode
 
-Create a configuration file for recording demonstrations (or edit an existing one like `env_config_pick_lift.json`):
+Create a configuration file for recording demonstrations (or edit an existing one like `env_config_so100.json`):
 
 1. Set `mode` to `"record"` 
 2. Specify a unique `repo_id` for your dataset (e.g., "username/task_name")
@@ -113,7 +113,7 @@ The following image shows the gamepad button mapping used during recording:
 Start the recording process:
 
 ```bash
-python lerobot/scripts/server/gym_manipulator.py --config_path configs/env_config_pick_lift.json
+python lerobot/scripts/server/gym_manipulator.py --config_path configs/env_config_so100.json
 ```
 
 During recording:
@@ -178,7 +178,7 @@ The LeRobot system uses a distributed actor-learner architecture for training. Y
 
 ### Configuration Setup
 
-Create a training configuration file (See example `train_config_hilserl_real_robot.json`). The training config is based on the main `TrainPipelineConfig` class in `lerobot/configs/train.py`.
+Create a training configuration file (See example `train_config_hilserl_so100.json`). The training config is based on the main `TrainPipelineConfig` class in `lerobot/configs/train.py`.
 
 1. Set `mode` to `null` (for training mode)
 2. Configure the policy settings (`type`, `device`, etc.)
@@ -192,7 +192,7 @@ Create a training configuration file (See example `train_config_hilserl_real_rob
 First, start the learner server process:
 
 ```bash
-python lerobot/scripts/server/learner_server.py --config_path configs/train_config_so100.json
+python lerobot/scripts/server/learner_server.py --config_path configs/train_config_hilserl_so100.json
 ```
 
 The learner:
@@ -206,7 +206,7 @@ The learner:
 In a separate terminal, start the actor process with the same configuration:
 
 ```bash
-python lerobot/scripts/server/actor_server.py --config_path configs/train_config_so100.json
+python lerobot/scripts/server/actor_server.py --config_path configs/train_config_hilserl_so100.json
 ```
 
 The actor:
