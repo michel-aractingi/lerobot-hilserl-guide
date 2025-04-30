@@ -99,7 +99,7 @@ class EEActionSpaceConfig:
     y_step_size: float        # Step size for Y-axis movement 
     z_step_size: float        # Step size for Z-axis movement
     bounds: Dict[str, Any]    # Position limits (min/max)
-    use_gamepad: bool = False # Enable gamepad control
+    control_mode: str = "gamepad" # Enable gamepad control
 ```
 
 This configuration:

@@ -108,7 +108,7 @@
                     -0.01
                 ]
             },
-            "use_gamepad": true
+            "control_mode": "gamepad"
         }
     },
     "name": "real_robot",
