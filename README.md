@@ -33,6 +33,7 @@ class HILSerlRobotEnvConfig(EnvConfig):
     reward_classifier_pretrained_path: Optional[str] = None    # For reward model
 ```
 
+
 ## Step 1: Finding Robot Workspace Bounds
 
 Before collecting demonstrations, you need to determine the appropriate workspace bounds for your robot.
@@ -71,7 +72,7 @@ Arguments:
         "max": [0.24, 0.20, 0.10],
         "min": [0.16, -0.08, 0.03]
     },
-    "use_gamepad": true
+    "control_mode": "gamepad"
 }
 ```
 
