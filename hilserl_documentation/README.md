@@ -167,11 +167,11 @@ Unlike other specialized training procedures, the reward classifier uses the sta
    - Uses datasets different to the offline demonstration datasets that the policy is trained on
    - Success states from demonstrations are labeled as positive examples
 
-2. **Configuration**: Check the example configuration in `hilserl_classifier_train_config.json`
+2. **Configuration**: Check the example configuration in `reward_classifier_train_config.json`
 
 3. **Training Commands**:
    ```bash
-   python -m lerobot/scripts/train.py --config_path lerobot/configs/hilserl_classifier_train_config.json
+   python lerobot/scripts/train.py --config_path lerobot/configs/reward_classifier_train_config.json
    ```
 
 4. **Loading the Classifier**:
@@ -239,7 +239,7 @@ The file provides several controller implementations for human input:
 | `InputController` | Base class with common interface for all controllers |
 | `KeyboardController` | Maps keyboard keys to X/Y/Z axis movements |
 | `GamepadController` | Maps gamepad joysticks to end-effector movements using PyGame |
-| `GamepadControllerHID` | Alternative gamepad implementation using direct HID access |
+| `GamepadControllerHID` | Alternative gamepad implementation using direct HID access (for MacOS)|
 
 All controllers provide:
 - Movement delta generation (dx, dy, dz)
