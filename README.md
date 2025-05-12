@@ -26,9 +26,9 @@ class HILSerlRobotEnvConfig(EnvConfig):
     dataset_root: Optional[str] = None    # Local dataset root (optional)
     task: str = ""    # Task identifier
     num_episodes: int = 10    # Number of episodes for recording
-    episode: int = 0    # Current episode index
+    episode: int = 0    # episode index for replay
     device: str = "cuda"    # Compute device
-    push_to_hub: bool = True    # Whether to push datasets to Hub
+    push_to_hub: bool = True    # Whether to push the recorded datasets to Hub
     pretrained_policy_name_or_path: Optional[str] = None    # For policy loading
     reward_classifier_pretrained_path: Optional[str] = None    # For reward model
 ```
@@ -36,7 +36,9 @@ class HILSerlRobotEnvConfig(EnvConfig):
 
 ## Step 1: Finding Robot Workspace Bounds
 
-Before collecting demonstrations, you need to determine the appropriate workspace bounds for your robot.
+Before collecting demonstrations, you need to determine the appropriate operational bounds for your robot.
+
+This helps simplifying the problem of learning on the real robot by limiting the robot's operational space to a specific region that solves the task and avoids unnecessary exploration.
 
 ### Using find_joint_limits.py
 
@@ -53,7 +55,7 @@ Arguments:
 
 ### Workflow
 
-1. Run the script and move the robot through its entire intended workspace
+1. Run the script and move the robot through the space that solves the task
 2. The script will record the minimum and maximum end-effector positions and print them to the console
    ```
    Max ee position [0.24170487 0.201285   0.10273342]
@@ -65,9 +67,9 @@ Arguments:
 
 ```json
 "ee_action_space_params": {
-    "x_step_size": 0.03,
-    "y_step_size": 0.03,
-    "z_step_size": 0.03,
+    "x_step_size": 0.03,  
+    "y_step_size": 0.03,  
+    "z_step_size": 0.03, 
     "bounds": {
         "max": [0.24, 0.20, 0.10],
         "min": [0.16, -0.08, 0.03]
@@ -78,7 +80,7 @@ Arguments:
 
 ## Step 2: Collecting Demonstrations
 
-With workspace bounds defined, you can collect demonstrations for training.
+With the bounds defined, you can collect demonstrations for training.
 
 ### Setting Up Record Mode
 
