@@ -106,7 +106,11 @@ Example configuration section:
 ### Gamepad Controls
 
 The following image shows the gamepad button mapping used during recording:
+
+<p align="center">
 <img src="media/gamepad_guide.jpg" width="600" style="display: block; margin: 0 auto;"/>
+</p>
+
 
 <p align="center"><i>Gamepad button mapping for robot control and episode management</i></p>
 
@@ -160,6 +164,7 @@ observation.images.front: [180, 250, 120, 150]
 <p align="center">
 <img src="media/crop_dataset.gif" width="600"/>
 </p>
+
 <p align="center"><i>Interactive cropping tool for selecting regions of interest</i></p>
 
 
@@ -235,7 +240,9 @@ The training proceeds automatically:
 - To perform human interventions, you can press the upper right trigger button on the gamepad. This will pause the policy actions and allow you to take over. 
 - A successful experiment is one where the human has to intervene at the start but then reduces the amount of interventions as the policy improves. You can monitor the intervention rate in the `wandb` dashboard.
 
+<p align="center">
 <img src="media/hil_effect.png" width="600" style="display: block; margin: 0 auto;"/>
+</p>
 
 <p align="center"><i>Example showing how human interventions help guide policy learning over time</i></p>
 
