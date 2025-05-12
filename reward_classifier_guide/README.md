@@ -10,7 +10,7 @@ Before training, you need to collect a dataset with labeled examples. The `recor
 
 To collect a dataset, you need to modeify some parameters in the environment configuration based on HILSerlRobotEnvConfig.
 
-```python
+```bash
 python lerobot/scripts/server/gym_manipulator.py --config_path lerobot/configs/reward_classifier_train_config.json
 ```
 
