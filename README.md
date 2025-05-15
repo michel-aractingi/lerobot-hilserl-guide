@@ -38,7 +38,7 @@ class HILSerlRobotEnvConfig(EnvConfig):
 
 Before collecting demonstrations, you need to determine the appropriate operational bounds for your robot.
 
-This helps simplifying the problem of learning on the real robot by limiting the robot's operational space to a specific region that solves the task and avoids unnecessary exploration.
+This helps simplifying the problem of learning on the real robot by limiting the robot's operational space to a specific region that solves the task and avoids unnecessary or unsafe exploration.
 
 ### Using find_joint_limits.py
 
@@ -138,6 +138,7 @@ During recording:
 ## Step 3: Processing the Dataset
 
 After collecting demonstrations, process them to determine optimal camera crops.
+Reinforcement learning is sensitive to background distractions, so it is important to crop the images to the relevant workspace area.
 Note: If you already know the crop parameters, you can skip this step and just set the `crop_params_dict` in the configuration file during recording.
 
 ### Determining Crop Parameters
