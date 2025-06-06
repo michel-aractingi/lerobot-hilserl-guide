@@ -1,6 +1,5 @@
 {
     "type": "hil",
-    "robot": null,
     "wrapper": {
         "gripper_penalty": -0.02,
         "display_cameras": false,
@@ -36,28 +35,11 @@
             0.785
         ],
         "reset_time_s": 2.0,
-        "ee_action_space_params": {
-            "x_step_size": 0.025,
-            "y_step_size": 0.025,
-            "z_step_size": 0.025,
-            "bounds": {
-                "max": [
-                    0.6,
-                    0.3,
-                    0.5
-                ],
-                "min": [
-                    0.2,
-                    -0.3,
-                    0.0
-                ]
-            },
-            "control_mode": "gamepad"
-        }
+        "control_mode": "gamepad"
     },
     "name": "franka_sim",
     "mode": null,
-    "repo_id": "aractingi/franka_sim_pick_lift_5",
+    "repo_id": null,
     "dataset_root": null,
     "task": "PandaPickCubeGamepad-v0",
     "num_episodes": 30,
@@ -96,6 +78,11 @@
             ]
         }
     },
-    "features_map": {},
+    "features_map": {
+        "observation.images.front": "observation.images.front",
+        "observation.images.wrist": "observation.images.wrist",
+        "observation.state": "observation.state",
+        "action": "action"
+    },
     "reward_classifier_pretrained_path": null
 }
