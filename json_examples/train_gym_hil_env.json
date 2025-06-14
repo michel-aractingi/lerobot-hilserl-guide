@@ -11,7 +11,7 @@
     "save_freq": 2000000,
     "wandb": {
         "enable": true,
-        "project": "so100_real",
+        "project": "franka_sim",
         "disable_artifact": true
     },
     "dataset": {
@@ -28,7 +28,7 @@
             "ACTION": "MIN_MAX"
         },
         "input_features": {
-            "observation.images.wrist": {
+            "observation.images.front": {
                 "type": "VISUAL",
                 "shape": [
                     3,
@@ -36,7 +36,7 @@
                     128
                 ]
             },
-            "observation.images.front": {
+            "observation.images.wrist": {
                 "type": "VISUAL",
                 "shape": [
                     3,
@@ -47,7 +47,7 @@
             "observation.state": {
                 "type": "STATE",
                 "shape": [
-                    21
+                    18
                 ]
             }
         },
@@ -62,7 +62,7 @@
         "device": "cuda",
         "use_amp": false,
         "dataset_stats": {
-            "observation.images.wrist": {
+            "observation.images.front": {
                 "mean": [
                     0.485,
                     0.456,
@@ -74,7 +74,7 @@
                     0.225
                 ]
             },
-            "observation.images.front": {
+            "observation.images.wrist": {
                 "mean": [
                     0.485,
                     0.456,
@@ -88,50 +88,44 @@
             },
             "observation.state": {
                 "min": [
-                    -15.0,
-                    -20.0,
-                    10.0,
-                    65.0,
+                    -0.18890867,
+                    -0.13319267,
+                    -0.15566483,
+                    -3.04198435,
+                    -0.05300621,
+                    2.52864378,
+                    0.426834,
+                    -100.0,
+                    -100.0,
+                    -100.0,
+                    -100.0,
+                    -100.0,
+                    -100.0,
+                    -100.0,
+                    0.2,
+                    -0.3,
                     0.0,
-                    0.0,
-                    -40.0,
-                    -60.0,
-                    -50.0,
-                    -80.0,
-                    -10.0,
-                    -110.0,
-                    -15.0,
-                    -20.0,
-                    15.0,
-                    70.0,
-                    -5.0,
-                    0.0,
-                    0.26,
-                    -0.06,
-                    0.25
+                    0.0
                 ],
                 "max": [
-                    15.0,
-                    15.0,
-                    40.0,
-                    110.0,
-                    0.5,
-                    31.0,
-                    53.0,
-                    61.0,
-                    67.0,
-                    90.0,
-                    6.0,
+                    0.1956124,
+                    0.5096723,
+                    0.05482981,
+                    -2.01792539,
+                    0.04425749,
+                    2.90565838,
+                    1.07170398,
                     100.0,
-                    15.0,
-                    12.0,
-                    40.0,
-                    110.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    0.6,
+                    0.3,
                     0.5,
-                    31.0,
-                    0.32,
-                    0.06,
-                    0.35
+                    255.0
                 ]
             },
             "action": {
@@ -147,8 +141,7 @@
                 ]
             }
         },
-        "num_discrete_actions": 3,
-        "storage_device": "cuda",
+        "storage_device": "cpu",
         "vision_encoder_name": "helper2424/resnet10",
         "freeze_vision_encoder": true,
         "image_encoder_hidden_dim": 32,
@@ -170,10 +163,11 @@
         "critic_target_update_weight": 0.005,
         "utd_ratio": 2,
         "state_encoder_hidden_dim": 256,
-        "latent_dim": 256,
+        "latent_dim": 64,
         "target_entropy": null,
         "use_backup_entropy": true,
-        "grad_clip_norm": 40.0,
+        "grad_clip_norm": 10.0,
+        "num_discrete_actions": 3,
         "critic_network_kwargs": {
             "hidden_dims": [
                 256,
@@ -191,8 +185,8 @@
         },
         "policy_kwargs": {
             "use_tanh_squash": true,
-            "log_std_min": -5,
-            "log_std_max": 2,
+            "std_min": 1e-5,
+            "std_max": 5,
             "init_final": 0.05
         },
         "actor_learner_config": {
@@ -206,94 +200,52 @@
         }
     },
     "env": {
-        "type": "gym_manipulator",
-        "robot": {
-            "type": "so100_follower_end_effector",
-            "port": "/dev/ttyACM0",
-            "cameras": {
-                "front": {
-                    "type": "opencv",
-                    "index_or_path": 2,
-                    "height": 480,
-                    "width": 640,
-                    "fps": 30
-                },
-                "wrist": {
-                    "type": "opencv",
-                    "index_or_path": 8,
-                    "height": 480,
-                    "width": 640,
-                    "fps": 30
-                }
-            },
-            "end_effector_bounds": {
-                "min": [
-                    0.26,
-                    -0.06,
-                    0.25
-                ],
-                "max": [
-                    0.32,
-                    0.06,
-                    0.35
-                ]
-            },
-            "end_effector_step_sizes": {
-                "x": 0.02,
-                "y": 0.02,
-                "z": 0.02
-            },
-            "max_gripper_pos": 30
-        },
-        "teleop": {
-            "type": "so101_leader",
-            "port": "/dev/ttyACM1"
-        },
+        "type": "hil",
         "wrapper": {
             "display_cameras": false,
             "add_joint_velocity_to_observation": true,
-            "add_current_to_observation": true,
+            "add_current_to_observation": false,
             "add_ee_pose_to_observation": true,
             "crop_params_dict": {
                 "observation.images.front": [
-                    270,
-                    170,
-                    90,
-                    190
+                    0,
+                    0,
+                    128,
+                    128
                 ],
                 "observation.images.wrist": [
                     0,
                     0,
-                    480,
-                    640
+                    128,
+                    128
                 ]
             },
             "resize_size": [
                 128,
                 128
             ],
-            "control_time_s": 20.0,
+            "control_time_s": 15.0,
             "use_gripper": true,
             "gripper_quantization_threshold": null,
             "gripper_penalty": -0.02,
             "gripper_penalty_in_reward": false,
             "fixed_reset_joint_positions": [
                 0.0,
-                -20.0,
-                20.0,
-                90.0,
+                0.195,
                 0.0,
-                30.0
+                -2.43,
+                0.0,
+                2.62,
+                0.785
             ],
-            "reset_time_s": 2.5,
-            "control_mode": "leader"
+            "reset_time_s": 1.0
         },
-        "name": "real_robot",
+        "name": "franka_sim",
         "mode": null,
-        "repo_id": "aractingi/pick_lift_cube_wrist_cam",
+        "repo_id": "hf_username/dataset_name",
         "dataset_root": null,
-        "task": "",
-        "num_episodes": 21,
+        "task": "PandaPickCubeGamepad-v0",
+        "num_episodes": 30,
         "episode": 0,
         "pretrained_policy_name_or_path": null,
         "device": "cuda",
@@ -319,7 +271,7 @@
             "observation.state": {
                 "type": "STATE",
                 "shape": [
-                    21
+                    18
                 ]
             },
             "action": {
@@ -334,6 +286,7 @@
             "observation.images.wrist": "observation.images.wrist",
             "observation.state": "observation.state",
             "action": "action"
-        }
+        },
+        "reward_classifier_pretrained_path": null
     }
 }

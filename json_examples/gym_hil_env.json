@@ -34,18 +34,17 @@
             2.62,
             0.785
         ],
-        "reset_time_s": 2.0,
-        "control_mode": "gamepad"
+        "reset_time_s": 2.0
     },
     "name": "franka_sim",
     "mode": null,
-    "repo_id": null,
+    "repo_id": "hf_username/dataset_name",
     "dataset_root": null,
     "task": "PandaPickCubeGamepad-v0",
     "num_episodes": 30,
     "episode": 0,
     "pretrained_policy_name_or_path": null,
-    "device": "cuda",
+    "device": "cpu",
     "push_to_hub": true,
     "fps": 10,
     "features": {
@@ -78,11 +77,6 @@
             ]
         }
     },
-    "features_map": {
-        "observation.images.front": "observation.images.front",
-        "observation.images.wrist": "observation.images.wrist",
-        "observation.state": "observation.state",
-        "action": "action"
-    },
+    "features_map": {},
     "reward_classifier_pretrained_path": null
 }
