@@ -1,3 +1,5 @@
+🚨🚨 This REPO is deprecated, follow the full guide on the [LeRobot Docs]([url](https://huggingface.co/docs/lerobot/index)) 🚨🚨
+
 # HilSerl Real Robot Training Workflow Guide
 
 This guide provides step-by-step instructions for training a robot policy using LeRobot's HilSerl implementation to train on a real robot.
