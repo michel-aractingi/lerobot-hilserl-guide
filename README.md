@@ -1,4 +1,4 @@
-🚨🚨 This REPO is deprecated, follow the full guide on the [LeRobot Docs]([url](https://huggingface.co/docs/lerobot/index)) 🚨🚨
+## 🚨🚨 This REPO is deprecated, follow the full guide on the [LeRobot Docs]([url](https://huggingface.co/docs/lerobot/index)) 🚨🚨
 
 # HilSerl Real Robot Training Workflow Guide
 
